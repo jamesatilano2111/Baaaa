@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .calculator-buttons button {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      font-size: 20px;
+      border-radius: 5px;
+    }
+
+    .result {
+      margin-top: 10px;
+      font-size: 24px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="calculator-buttons">
+      <button onclick="appendNumber(7)">7</button>
+      <button onclick="appendNumber(8)">8</button>
+      <button onclick="appendNumber(9)">9</button>
+      <button onclick="appendOperator('+')">+</button>
+      <br>
+      <button onclick="appendNumber(4)">4</button>
+      <button onclick="appendNumber(5)">5</button>
+      <button onclick="appendNumber(6)">6</button>
+      <button onclick="appendOperator('-')">-</button>
+      <br>
+      <button onclick="appendNumber(1)">1</button>
+      <button onclick="appendNumber(2)">2</button>
+      <button onclick="appendNumber(3)">3</button>
+      <button onclick="appendOperator('×')">*</button>
+      <br>
+      <button onclick="appendNumber(0)">0</button>
+      <button onclick="appendOperator('.')">.</button>
+      <button onclick="calculateResult()">=</button>
+      <button onclick="appendOperator('/')">/</button>
+      <br>
+      <button onclick="clearResult()">C</button>
+    </div>
+    <div class="result" id="result">0</div>
+  </div>
+
+  <script>
+    let currentExpression = '';
+    const resultElement = document.getElementById('result');
+
+    function appendNumber(number) {
+      currentExpression += number;
+      resultElement.innerText = currentExpression;
+    }
+
+    function appendOperator(operator) {
+      currentExpression += operator;
+      resultElement.innerText = currentExpression;
+    }
+
+    function calculateResult() {
+      try {
+        const result = eval(currentExpression);
+        resultElement.innerText = result;
+        currentExpression = '';
+      } catch (error) {
+        resultElement.innerText = 'Error';
+        currentExpression = '';
+      }
+    }
+
+    function clearResult() {
+      currentExpression = '';
+      resultElement.innerText = '0';
+    }
+  </script>
+</body>
+</html>
